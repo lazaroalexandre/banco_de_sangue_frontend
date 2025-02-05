@@ -85,7 +85,7 @@ class InputDefault extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(SizeToken.xs),
             ),
-            borderSide: BorderSide(color: ColorToken.danger, width: 1),
+            borderSide: BorderSide(color: ColorToken.info, width: 1),
           ),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(

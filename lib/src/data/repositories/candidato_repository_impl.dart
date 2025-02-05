@@ -38,7 +38,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -58,7 +58,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -77,15 +77,14 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
               CandidateRegisterDto.fromMap(json as Map<String, dynamic>))
           .toList();
 
-      await clientService.post(
-          ApiConstant.candidatesRegister, list.map((candidate) => candidate.toMap()).toList());
-
+      await clientService.post(ApiConstant.candidatesRegister,
+          list.map((candidate) => candidate.toMap()).toList());
 
       return Success(list);
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao registrar os candidatos. Tente novamente.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -105,7 +104,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -125,7 +124,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -145,7 +144,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }
@@ -165,7 +164,7 @@ class CandidatoRepositoryImpl implements CandidatoRepository {
     } on DioException catch (e) {
       return Failure(
         RestException(
-            message: "Houve um erro!",
+            message: "Houve um erro ao listar os candidatos.",
             statusCode: e.response?.statusCode ?? 500),
       );
     }

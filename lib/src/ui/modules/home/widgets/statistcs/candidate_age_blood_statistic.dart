@@ -55,7 +55,7 @@ class CandidateAgeBloodStatistic extends StatelessWidget {
                 marks: [
                   IntervalMark(
                     position: Varset('Tipo Sanguíneo') * Varset('Idade Média'),
-                    color: ColorEncode(value: ColorToken.danger),
+                    color: ColorEncode(value: ColorToken.info),
                   ),
                 ],
                 axes: [Defaults.horizontalAxis, Defaults.verticalAxis],

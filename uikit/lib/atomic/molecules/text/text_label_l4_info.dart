@@ -19,7 +19,7 @@ class TextLabelL4Info  extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextDefault(
       text: text,
-      textStyle: Style.l4(color: ColorToken.danger),
+      textStyle: Style.l4(color: ColorToken.info),
       overflow: overflow,
       maxLines: maxLines,
     );

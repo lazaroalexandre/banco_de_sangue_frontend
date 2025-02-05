@@ -5,10 +5,12 @@ import 'package:uikit/uikit.dart';
 class IconCircular extends StatelessWidget {
   final String icon;
   final double? padding;
+  final Color? color;
   const IconCircular({
     super.key,
     required this.icon,
     this.padding,
+    this.color,
   });
 
   @override
@@ -16,12 +18,12 @@ class IconCircular extends StatelessWidget {
     return Container(
       height: SizeToken.xl3,
       width: SizeToken.xl3,
+      padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(SizeToken.xl3),
-        color: ColorToken.danger,
+        color: color ?? ColorToken.info,
       ),
-      child: IconDefault(
-         icon: icon, height: 19, colorIcon: ColorToken.light),
+      child: IconDefault(icon: icon, height: 19, colorIcon: ColorToken.light),
     );
   }
 }

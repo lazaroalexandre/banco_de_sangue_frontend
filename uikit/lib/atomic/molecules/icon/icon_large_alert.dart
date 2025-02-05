@@ -22,7 +22,7 @@ class IconLargeAlert extends StatelessWidget {
       icon: icon,
       height: 19,
       isBackgroundColor: isBackgroundColor,
-      colorIcon: ColorToken.danger,
+      colorIcon: ColorToken.info,
     );
   }
 }

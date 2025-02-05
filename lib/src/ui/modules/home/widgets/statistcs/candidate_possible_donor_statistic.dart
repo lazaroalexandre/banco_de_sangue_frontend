@@ -56,7 +56,7 @@ class CandidatePossibleDonorStatistic extends StatelessWidget {
                 marks: [
                   IntervalMark(
                     position: Varset('Tipo Sanguíneo') * Varset('Quantidade'),
-                    color: ColorEncode(value: ColorToken.danger),
+                    color: ColorEncode(value: ColorToken.info),
                   ),
                 ],
                 axes: [Defaults.horizontalAxis, Defaults.verticalAxis],

@@ -28,7 +28,7 @@ class ButtonNavigatorMenu extends StatelessWidget {
       
       child: BottomNavigationBar(
         
-        backgroundColor: ColorToken.danger,
+        backgroundColor: ColorToken.info,
         fixedColor: ColorToken.light,
         onTap: onTap,
         currentIndex: currentIndex,

@@ -18,68 +18,76 @@ class CandidateSexObsessedStatistic extends StatelessWidget {
       const SizedBox(
         height: SizeToken.xl,
       ),
-     ValueListenableBuilder<bool>(
-  valueListenable: candidateController.isLoading,
-  builder: (context, isLoading, child) {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+      ValueListenableBuilder<bool>(
+        valueListenable: candidateController.isLoading,
+        builder: (context, isLoading, child) {
+          if (isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-    return ValueListenableBuilder(
-      valueListenable: candidateController.candidatesSobeseBySex,
-      builder: (context, value, child) {
-        if (value.isEmpty) {
-          return const Center(child: TextBodyB1SemiDark(text: "Dados não encontrados"));
-        }
-        
-        return Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 0,
-              mainAxisSpacing: 0,
-            ),
-            itemCount: value.length,
-            itemBuilder: (context, index) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: Column(
+          return ValueListenableBuilder(
+            valueListenable: candidateController.candidatesSobeseBySex,
+            builder: (context, value, child) {
+              if (candidateController.isLoading.value) {
+                return const CircularProgressIndicator();
+              }
+              if (value.isEmpty || value.every((item) => item?.percentualObesidade == null)) {
+                return const Center(
+                    child: TextBodyB1SemiDark(text: "Dados não encontrados"));
+              }
+              return Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                  ),
+                  itemCount: value.length,
+                  itemBuilder: (context, index) {
+                    return Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(value[index]!.sexo),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child:
+                                      TextLabelL4Dark(text: value[index]!.sexo),
+                                ),
+                              ),
+                              const Divider(
+                                  height: 1, thickness: 1, color: Colors.black),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: TextBodyB2Dark(
+                                      text:
+                                          "${value[index]!.percentualObesidade}%"),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const Divider(height: 1, thickness: 1, color: Colors.black),
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text("${value[index]!.percentualObesidade}%"),
-                          ),
-                        ),
+                        index > 0
+                            ? const SizedBox.shrink()
+                            : const VerticalDivider(
+                                color: Colors.black, thickness: 1, width: 1),
                       ],
-                    ),
-                  ),
-                  index > 0
-                      ? const SizedBox.shrink()
-                      : const VerticalDivider(color: Colors.black, thickness: 1, width: 1),
-                ],
+                    );
+                  },
+                ),
               );
             },
-          ),
-        );
-      },
-    );
-  },
-),
-  ]);
+          );
+        },
+      ),
+    ]);
   }
 }

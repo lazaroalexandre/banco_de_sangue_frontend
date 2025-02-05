@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
           builder: (context, value, child) => IndexedStack(
             index: menuController.currentIndex.value,
             children: [
-              StatisticsWidget(),
+              const StatisticsWidget(),
               CandidatesWidget(),
             ],
           ),
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           clipBehavior: Clip.antiAlias,
-          backgroundColor: ColorToken.danger,
+          backgroundColor: ColorToken.info,
           onPressed: () => candidatoController.registerCandidatos(),
           child: Padding(
               padding: const EdgeInsets.all(20),

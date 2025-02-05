@@ -27,7 +27,7 @@ class CandidateImcByAgeStatistic extends StatelessWidget {
             if (candidateController.isLoading.value) {
               return const CircularProgressIndicator();
             }
-            if (value.isEmpty) {
+            if (value.isEmpty || value.every((item) => item?.imcMedio == null)) {
               return const Center(
                 child: TextBodyB1SemiDark(text: "Dados não encontrados"),
               );
@@ -55,7 +55,7 @@ class CandidateImcByAgeStatistic extends StatelessWidget {
                 marks: [
                   IntervalMark(
                     position: Varset('Faixa Etária') * Varset('IMC Médio'),
-                    color: ColorEncode(value: ColorToken.danger),
+                    color: ColorEncode(value: ColorToken.info),
                   ),
                 ],
                 axes: [Defaults.horizontalAxis, Defaults.verticalAxis],

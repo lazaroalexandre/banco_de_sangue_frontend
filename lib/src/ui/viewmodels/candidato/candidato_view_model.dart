@@ -1,21 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:banco_de_sangue/src/domain/dtos/candidate_age_blood_dto.dart';
-import 'package:banco_de_sangue/src/domain/dtos/candidate_by_state_dto.dart';
-import 'package:banco_de_sangue/src/domain/dtos/candidate_imc_by_age_dto.dart';
-import 'package:banco_de_sangue/src/domain/dtos/candidate_possible_donor_dto.dart';
-import 'package:banco_de_sangue/src/domain/dtos/candidate_sex_obsessed_dto.dart';
+import 'package:banco_de_sangue/src/constants/icon_constant.dart';
+import 'package:banco_de_sangue/src/data/exceptions/rest_exception.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import 'package:banco_de_sangue/src/data/services/messages/result_message_service.dart';
+import 'package:banco_de_sangue/src/domain/dtos/candidate_age_blood_dto.dart';
+import 'package:banco_de_sangue/src/domain/dtos/candidate_by_state_dto.dart';
 import 'package:banco_de_sangue/src/domain/dtos/candidate_detail_dto.dart';
+import 'package:banco_de_sangue/src/domain/dtos/candidate_imc_by_age_dto.dart';
+import 'package:banco_de_sangue/src/domain/dtos/candidate_possible_donor_dto.dart';
+import 'package:banco_de_sangue/src/domain/dtos/candidate_sex_obsessed_dto.dart';
 import 'package:banco_de_sangue/src/domain/repositories/candidato_repository.dart';
 
 class CandidatoViewModel extends ChangeNotifier {
   final CandidatoRepository candidatoRepository;
+  final ResultMessageService resultMessageService;
   CandidatoViewModel({
     required this.candidatoRepository,
+    required this.resultMessageService,
   });
 
   final isLoading = ValueNotifier<bool>(false);
@@ -42,7 +47,11 @@ class CandidatoViewModel extends ChangeNotifier {
         list.value = success;
         filter.value = list.value;
       },
-      (failure) => null,
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }
@@ -72,8 +81,14 @@ class CandidatoViewModel extends ChangeNotifier {
       File arquivo = File(path);
       final result = await candidatoRepository.registerCandidates(arquivo);
       result.fold(
-        (success) => null,
-        (failure) => debugPrint(failure.toString()),
+        (success) => resultMessageService.showMessageSuccess(
+            "Os candidatos foram registrados com sucesso.",
+            IconConstant.success),
+        (failure) {
+          if (failure is RestException) {
+            resultMessageService.showMessageError(failure.message);
+          }
+        },
       );
     }
     isLoading.value = false;
@@ -86,7 +101,11 @@ class CandidatoViewModel extends ChangeNotifier {
       (success) {
         imcByAge.value = success;
       },
-      (failure) => null,
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }
@@ -98,7 +117,11 @@ class CandidatoViewModel extends ChangeNotifier {
       (success) {
         byState.value = success;
       },
-      (failure) => debugPrint(failure.toString()),
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }
@@ -110,7 +133,11 @@ class CandidatoViewModel extends ChangeNotifier {
       (success) {
         obeseBySex.value = success;
       },
-      (failure) => debugPrint(failure.toString()),
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }
@@ -122,7 +149,11 @@ class CandidatoViewModel extends ChangeNotifier {
       (success) {
         averageAgeBlood.value = success;
       },
-      (failure) => debugPrint(failure.toString()),
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }
@@ -134,7 +165,11 @@ class CandidatoViewModel extends ChangeNotifier {
       (success) {
         possibleDonors.value = success;
       },
-      (failure) => debugPrint(failure.toString()),
+      (failure) {
+        if (failure is RestException) {
+          resultMessageService.showMessageError(failure.message);
+        }
+      },
     );
     isLoading.value = false;
   }

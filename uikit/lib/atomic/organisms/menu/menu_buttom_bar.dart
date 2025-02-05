@@ -30,7 +30,7 @@ class MenuButtomBar extends StatelessWidget {
         showUnselectedLabels: false,
         currentIndex: courrentIndex ?? 0,
         selectedLabelStyle: Style.l5(
-          color: ColorToken.danger,
+          color: ColorToken.info,
         ),
         items: [
           BottomNavigationBarItem(

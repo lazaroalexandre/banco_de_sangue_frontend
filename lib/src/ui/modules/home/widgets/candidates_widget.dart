@@ -15,7 +15,12 @@ class CandidatesWidget extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: SizeToken.xl,
+          ),
+          const TextHeadlineH2(text: "Candidatos aptos à doação:"),
           const SizedBox(
             height: SizeToken.lg,
           ),
@@ -31,8 +36,8 @@ class CandidatesWidget extends StatelessWidget {
             builder: (context, value, child) {
               return Align(
                   alignment: Alignment.centerRight,
-                  child: TextBodyB2SemiDark(
-                      text: "${value.length} encontrados"));
+                  child:
+                      TextBodyB2SemiDark(text: "${value.length} encontrados"));
             },
           ),
           const SizedBox(

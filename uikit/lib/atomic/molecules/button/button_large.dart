@@ -18,7 +18,7 @@ class ButtonLarge extends StatelessWidget {
       child: ButtonDefault(
         isBorderRadio: false,
         padding: const EdgeInsets.symmetric(vertical: SizeToken.lg),
-        backgroundColor: ColorToken.danger,
+        backgroundColor: ColorToken.info,
         onPressed: onPressed,
         child: TextLabelL1Light(
           text: text,

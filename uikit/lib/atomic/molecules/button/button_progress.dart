@@ -15,7 +15,7 @@ class ButtonProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return ButtonDefault(
       padding: const EdgeInsets.symmetric(vertical: SizeToken.md),
-      backgroundColor: ColorToken.danger,
+      backgroundColor: ColorToken.info,
       onPressed: onPressed,
       child: TextLabelL1Light(
         text: text,

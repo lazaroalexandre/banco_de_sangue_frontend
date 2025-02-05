@@ -4,7 +4,9 @@ class MenuControllerIndex extends ChangeNotifier {
   ValueNotifier<int> currentIndex = ValueNotifier<int>(0);
 
   onIndexTapped(int index) {
-    currentIndex.value = index;
-    notifyListeners();
+    if (index != currentIndex.value) {
+      currentIndex.value = index;
+      notifyListeners();
+    }
   }
 }
